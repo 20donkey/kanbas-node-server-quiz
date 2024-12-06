@@ -20,12 +20,24 @@ mongoose.connect(CONNECTION_STRING).then(() => {
   console.log("Using database:", mongoose.connection.name); // Logs the database name
 })
 const app = express()
+// app.use(
+//   cors({
+//    credentials: true,
+//    origin: process.env.NETLIFY_URL,
+//  })
+// )
+
 app.use(
   cors({
-   credentials: true,
-   origin: process.env.NETLIFY_URL,
- })
-)
+    credentials: true, // Allow cookies and session sharing
+    origin: [ "http://localhost:3000",// Local development origin
+      "https://kanbas-react-quiz.netlify.app"], // Deployed frontend origin, // Frontend origin
+  })
+);
+
+
+app.options("*", cors());
+
 app.use(express.json());
 const sessionOptions = {
 secret: process.env.SESSION_SECRET || "kanbas",
