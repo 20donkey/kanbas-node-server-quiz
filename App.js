@@ -13,13 +13,14 @@ import QuizRoutes from"./Kanbas/Quizzes/routes.js";
 import EnrollmentRoutes from "./Kanbas/Enrollments/routes.js"
 import cors from "cors"
 import session from "express-session";
-const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/project"
+const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING 
+// || "mongodb://127.0.0.1:27017/project"
 mongoose.connect(CONNECTION_STRING)
 const app = express()
 app.use(
   cors({
    credentials: true,
-   origin: process.env.NETLIFY_URL || "http://localhost:3000",
+   origin: process.env.NETLIFY_URL,
  })
 )
 app.use(express.json());
