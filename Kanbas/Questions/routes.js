@@ -7,7 +7,9 @@ export default function QuizQuestionRoutes(app) {
 
   app.get("/api/quizzes/:qid/questions", async (req, res) => {
     const { qid } = req.params;
+    console.log("qid is : ", qid)
     const questions = await dao.findQuestionsByQuiz(qid);
+    console.log("questions found:", questions)
     res.json(questions);
   });
 

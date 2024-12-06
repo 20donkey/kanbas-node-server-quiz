@@ -5,6 +5,7 @@ export const findAllQuestions = () => {
 }
 
 export const findQuestionsByQuiz = (quizID) => {
+    console.log("looking for questions by this quizId", quizID)
     return model.find({ quizID: quizID});
 }
 
