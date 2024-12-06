@@ -15,7 +15,10 @@ import cors from "cors"
 import session from "express-session";
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING 
 // || "mongodb://127.0.0.1:27017/project"
-mongoose.connect(CONNECTION_STRING)
+mongoose.connect(CONNECTION_STRING).then(() => {
+  console.log("Connected to MongoDB Atlas");
+  console.log("Using database:", mongoose.connection.name); // Logs the database name
+})
 const app = express()
 app.use(
   cors({
